@@ -1,4 +1,4 @@
-name: cicd
+name: CICD
 
 on: [push, workflow_dispatch]
 
@@ -6,7 +6,7 @@ on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: 
-      group: ubuntu-runners
+      group: ubuntu-latest
     steps:
       - name: Git chockout
         uses: actions/checkout@v3

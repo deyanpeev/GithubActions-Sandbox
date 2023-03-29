@@ -5,8 +5,7 @@ on: [push, workflow_dispatch]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
-    runs-on: 
-      group: ubuntu-latest
+    runs-on:  ubuntu-latest
     steps:
       - name: Git chockout
         uses: actions/checkout@v3

@@ -1,13 +1,12 @@
 name: Issues Trigger
 
-on: workflow_dispatch
+on: [issues, workflow_dispatch]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   issues-react:
-    runs-on:
-      group: ubuntu-latest
+    runs-on:  ubuntu-latest
     steps:
       - name: Print details about the issue
         run: echo "${toJSON(github.event)}}"

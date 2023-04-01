@@ -1,0 +1,23 @@
+name: Push To Repo
+
+on: workflow_dispatch
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  pull-push:
+    runs-on:  ubuntu-latest
+    steps:
+      - name: Git chockout
+        uses: actions/checkout@v3
+      - name: Make modifications
+        run: |
+          testdirname=testingdir
+          mkdir -p testingdir
+          timestamp=$(date +%s)
+          touch ${testdirname}/${timestamp}.txt
+      - name: Commit and push PR
+        run: |
+          git config --global user.name Deyan Peev
+          git config --global user.email "deqn.peev@gmail.com"
+          git commit -a -m "testing commit"
+          git push

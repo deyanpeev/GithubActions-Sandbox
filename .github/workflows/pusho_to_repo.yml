@@ -21,4 +21,4 @@ jobs:
           git config --global user.email "deqn.peev@gmail.com"
           git add .
           git commit -a -m "testing commit"
-          git push
+          git push -f origin main

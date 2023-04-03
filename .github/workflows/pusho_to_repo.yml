@@ -1,6 +1,7 @@
 name: Push To Repo
 
 on: workflow_dispatch
+concurrency: 'false'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,4 +22,4 @@ jobs:
           git config --global user.email "deqn.peev@gmail.com"
           git add .
           git commit -a -m "testing commit"
-          git push -f origin main
+          git push

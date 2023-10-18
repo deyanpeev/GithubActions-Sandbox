@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Print details about the issue
         run: | 
-          echo "${{ toJSON(github.event.issue.user) }}"
-          echo "${{ toJSON(github.event.action) }}"
-          echo "${{ toJSON(github.event) }}"
-          echo "${{ toJSON(github) }}"
+          echo "user: ${{ toJSON(github.event.issue.user) }}"
+          echo "action: ${{ toJSON(github.event.action) }}"
+          echo "event: ${{ toJSON(github.event) }}"
+          echo "everything: ${{ toJSON(github) }}"

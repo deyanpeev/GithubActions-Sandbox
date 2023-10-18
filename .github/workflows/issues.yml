@@ -7,6 +7,9 @@ on:
       - reopened
   workflow_dispatch:
 
+env:
+  PROTON_PR_STARTING_STRING: "Update requested for Proton"
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -15,9 +18,11 @@ jobs:
     steps:
       - name: Print details about the issue
         run: | 
-          echo "user: ${{ toJSON(github.event.issue.user) }}"
-          echo "action: ${{ toJSON(github.event.action) }}"
           echo "event: ${{ toJSON(github.event) }}"
           echo "everything: ${{ toJSON(github) }}"
           echo "title: ${{ toJSON(github.event.pull_request.title) }}"
-          exit 1
+      
+      - name: add labels
+        if: ${{ startsWith(github.event.pull_request.title, env.PROTON_PR_STARTING_STRING) }}
+        run: |
+          echo "if is met"

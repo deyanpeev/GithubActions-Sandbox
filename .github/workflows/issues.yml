@@ -18,3 +18,5 @@ jobs:
         run: | 
           echo "${{ toJSON(github.event.issue.user) }}"
           echo "${{ toJSON(github.event.action) }}"
+          echo "${{ toJSON(github.event) }}"
+          echo "${{ toJSON(github) }}"

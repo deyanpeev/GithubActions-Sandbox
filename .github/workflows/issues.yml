@@ -20,3 +20,4 @@ jobs:
           echo "action: ${{ toJSON(github.event.action) }}"
           echo "event: ${{ toJSON(github.event) }}"
           echo "everything: ${{ toJSON(github) }}"
+          exit 1

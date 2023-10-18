@@ -1,10 +1,9 @@
 name: Issues Trigger
 
 on: 
-  issues: 
+  pull_request: 
     types:
       - opened
-      - deleted
       - reopened
   workflow_dispatch:
 
@@ -20,4 +19,5 @@ jobs:
           echo "action: ${{ toJSON(github.event.action) }}"
           echo "event: ${{ toJSON(github.event) }}"
           echo "everything: ${{ toJSON(github) }}"
+          echo "title: ${{ toJSON(github.event.pull_request.title) }}"
           exit 1

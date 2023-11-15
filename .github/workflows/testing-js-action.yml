@@ -1,0 +1,30 @@
+name: "Injest snapshot from Atlas to Port"
+
+on: workflow_dispatch
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Hello world action step
+        uses: ./.github/actions/injest-snapshots-in-port
+        id: hello
+        with:
+          who-to-greet: 'DP'
+
+      # - name: Get Config
+      #   id: resolve-env-config
+      #   uses: ./.github/actions/get-service-env-config
+      #   with:
+      #     region_short: 'ire-staging'
+      #     aws_region: 'eu-west-1'
+      #     env_type: 'staging'
+      #     product: 'hybrid'
+      #     service_name: 'oauth-server'
+      # Use the output from the `hello` step
+
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"

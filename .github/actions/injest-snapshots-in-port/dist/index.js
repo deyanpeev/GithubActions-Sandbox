@@ -30361,6 +30361,11 @@ const github = __nccwpck_require__(9074);
 try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
+  const password = core.getInput('password');
+
+  console.log('testing print');
+  console.log(`Printing the secret password from the action: ${password}`);
+
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);

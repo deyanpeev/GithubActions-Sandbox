@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Print the secret
-        run: echo "Print the secret ${{ secrets.TEST_SECRET }}"
+        run: echo "Print the secret from the WF via echo ${{ secrets.TEST_SECRET }}"
       - name: Hello world action step
         uses: ./.github/actions/injest-snapshots-in-port
         id: hello

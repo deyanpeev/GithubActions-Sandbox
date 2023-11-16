@@ -6,7 +6,8 @@ try {
   const nameToGreet = core.getInput('who-to-greet');
   const password = core.getInput('password');
 
-  console.log(`Printing the secret password: ${password}`);
+  console.log('testing print');
+  console.log(`Printing the secret password from the action: ${password}`);
 
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();

@@ -1,0 +1,55 @@
+name: "Automatic Terraform Apply"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "tests/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "tests/**"
+jobs:
+  find-out-changes:
+    runs-on: [self-hosted, util]
+    outputs:
+      changed_directories: ${{ steps.set-output.outputs.changed_directories }}
+      changed_directories_alerts: ${{ steps.set-output.outputs.changed_directories_alerts }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          dir_names: true
+          dir_names_max_depth: 2
+          json: true
+          quotepath: false
+          files: |
+            aws/**
+
+      - name: Get changed files
+        id: changed-files-alerts
+        uses: tj-actions/changed-files@v35
+        with:
+          dir_names: true
+          dir_names_max_depth: 3
+          json: true
+          quotepath: false
+          files: |
+            aws/**
+
+      - name: "Set output in the matrix format"
+        id: set-output
+        run: |
+          echo "changed_directories={\"dir\":${{ steps.changed-files.outputs.all_changed_files }}}"
+          echo "changed_directories_alerts=${{ steps.changed-files-alerts.outputs.all_changed_files }}"
+
+          echo "changed_directories={\"dir\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "$GITHUB_OUTPUT"
+          echo "changed_directories_alerts=${{ steps.changed-files-alerts.outputs.all_changed_files }}" >> "$GITHUB_OUTPUT"
+          echo ${{ steps.changed-files-alerts.outputs.all_changed_files }}

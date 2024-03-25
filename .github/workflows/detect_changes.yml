@@ -13,7 +13,7 @@ on:
       - "src/tests/**"
 jobs:
   find-out-changes:
-    runs-on: [self-hosted, util]
+    runs-on: ubuntu-latest
     outputs:
       changed_directories: ${{ steps.set-output.outputs.changed_directories }}
       changed_directories_alerts: ${{ steps.set-output.outputs.changed_directories_alerts }}

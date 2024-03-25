@@ -27,18 +27,6 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           dir_names: true
-          dir_names_max_depth: 2
-          json: true
-          quotepath: false
-          files: |
-            src/tests/**
-
-      - name: Get changed files
-        id: changed-files-alerts
-        uses: tj-actions/changed-files@v35
-        with:
-          dir_names: true
-          dir_names_max_depth: 3
           json: true
           quotepath: false
           files: |

@@ -1,0 +1,132 @@
+{
+    "id": 4990,
+    "uid": "efFXRB2Sk",
+    "orgID": 1,
+    "folderUID": "Baa6v25Sk",
+    "ruleGroup": "2 min",
+    "title": "Build Instance TEST",
+    "condition": "C",
+    "data": [
+        {
+            "refId": "A",
+            "queryType": "",
+            "relativeTimeRange": {
+                "from": 21600,
+                "to": 0
+            },
+            "datasourceUid": "OeO4etcSk",
+            "model": {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "OeO4etcSk"
+                },
+                "hide": false,
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "A"
+            }
+        },
+        {
+            "refId": "B",
+            "queryType": "",
+            "relativeTimeRange": {
+                "from": 21600,
+                "to": 0
+            },
+            "datasourceUid": "__expr__",
+            "model": {
+                "conditions": [
+                    {
+                        "evaluator": {
+                            "params": [],
+                            "type": "gt"
+                        },
+                        "operator": {
+                            "type": "and"
+                        },
+                        "query": {
+                            "params": [
+                                "B"
+                            ]
+                        },
+                        "reducer": {
+                            "params": [],
+                            "type": "last"
+                        },
+                        "type": "query"
+                    }
+                ],
+                "datasource": {
+                    "type": "__expr__",
+                    "uid": "__expr__"
+                },
+                "expression": "A",
+                "hide": false,
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "type": "reduce"
+            }
+        },
+        {
+            "refId": "C",
+            "queryType": "",
+            "relativeTimeRange": {
+                "from": 21600,
+                "to": 0
+            },
+            "datasourceUid": "__expr__",
+            "model": {
+                "conditions": [
+                    {
+                        "evaluator": {
+                            "params": [
+                                750
+                            ],
+                            "type": "gt"
+                        },
+                        "operator": {
+                            "type": "and"
+                        },
+                        "query": {
+                            "params": [
+                                "C"
+                            ]
+                        },
+                        "reducer": {
+                            "params": [],
+                            "type": "last"
+                        },
+                        "type": "query"
+                    }
+                ],
+                "datasource": {
+                    "type": "__expr__",
+                    "uid": "__expr__"
+                },
+                "expression": "B",
+                "hide": false,
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+            }
+        }
+    ],
+    "updated": "2024-02-22T12:49:15Z",
+    "noDataState": "NoData",
+    "execErrState": "Error",
+    "for": "5m",
+    "annotations": {
+        "__dashboardUid__": "-J1vgod4z",
+        "__panelId__": "2"
+    },
+    "labels": {
+        "env": "staging",
+        "product": "flex",
+        "region": "ire",
+        "rulename": "persistent_volume_claim_space"
+    },
+    "isPaused": false
+}

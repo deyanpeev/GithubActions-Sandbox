@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - "tests/**"
+      - "src/tests/**"
   pull_request:
     branches:
       - main
     paths:
-      - "tests/**"
+      - "src/tests/**"
 jobs:
   find-out-changes:
     runs-on: [self-hosted, util]

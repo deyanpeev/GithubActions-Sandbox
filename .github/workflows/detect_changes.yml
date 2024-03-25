@@ -22,22 +22,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed files
-        id: changed-files
+      - name: Get Terrafrom changed files
+        id: changed-terraform-files
         uses: tj-actions/changed-files@v35
         with:
           dir_names: true
           json: true
           quotepath: false
           files: |
-            src/tests/**
+            src/tests/**/*.tf
+
+      - name: Get Alerts files
+        id: changed-files-alerts
+        uses: tj-actions/changed-files@v35
+        with:
+          dir_names: true
+          dir_names_max_depth: 3
+          json: true
+          quotepath: false
+          files: |
+            src/tests/amg/alerts/**
+
+      - name: Print Alert changes
+        run: |
+          echo "changed_directories_alerts=${{ steps.changed-files-alerts.outputs.all_changed_files }}"
 
       - name: "Set output in the matrix format"
         id: set-output
         run: |
-          echo "changed_directories={\"dir\":${{ steps.changed-files.outputs.all_changed_files }}}"
+          echo "changed_directories={\"dir\":${{ steps.changed-terraform-files.outputs.all_changed_files }}}"
           echo "changed_directories_alerts=${{ steps.changed-files-alerts.outputs.all_changed_files }}"
-
-          echo "changed_directories={\"dir\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "$GITHUB_OUTPUT"
-          echo "changed_directories_alerts=${{ steps.changed-files-alerts.outputs.all_changed_files }}" >> "$GITHUB_OUTPUT"
-          echo ${{ steps.changed-files-alerts.outputs.all_changed_files }}
